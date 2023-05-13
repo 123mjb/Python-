@@ -1,3 +1,4 @@
+import json
 Answers = open("WordleSolver\Answers.txt","r")
 ValidAnswers = Answers.read().split()
 Answers.close()
@@ -7,5 +8,5 @@ for i in range(0,len(ValidAnswers)):
     for g in range(0,5):
         lettervalues[ValidAnswers[i][g]] += 1
 txtlv = open("WordleSolver\Lettervalues.txt","w")
-txtlv.write(str(lettervalues))
+txtlv.write(str(json.dumps(lettervalues)))
 txtlv.close()
