@@ -22,7 +22,7 @@ for i in range(0,len(AllValid)):
             LettersInWord.append(AllValid[i][g])
             WordValues[i] += LetterValues[AllValid[i][g]] / LetterValues["totalvalue"]
         else:
-            WordValues[i] += LetterValues[AllValid[i][g]] / LetterValues["totalvalue"] / 2
+            WordValues[i] += LetterValues[AllValid[i][g]] / LetterValues["totalvalue"] /2
 # print(WordValues)
 for i in range(0,len(WordValues)):
     if WordValues[i]>LargestNumber:
