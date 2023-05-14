@@ -29,41 +29,54 @@ while cont:
     NotInWord = list(input("Input What Letters Are not in the word.\n"))
     WordValues = []
     for i in range(0,len(AllValid)):
-        LettersInWord = []
         WordValues.append(0)
-        for g in range(0,5):
-            for l in Previous:
-                j += l[g] 
-            if AllValid[i][g] in NotInWord:
-                WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] / 4
-            elif (AllValid[i][g] in j) and not AllValid[i][g] == correct[g]:
-                WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] / 4
-            elif AllValid[i][g] == correct[g]:
-                WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] * 1.5
-            elif AllValid[i][g] not in LettersInWord:
-                LettersInWord.append(AllValid[i][g])
-                WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
-            elif AllValid[i][g] in InWord and correct[g] == "_":
-                WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
-            else:
-                # WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] /2
-                while True:
-                    if AllValid[i][prevlet] == AllValid[i][g] and LetterValues[str(prevlet)][AllValid[i][prevlet]] < LetterValues[str(g)][AllValid[i][g]] and not prevlet == g:
-                        multlet.append(prevlet)
-                        if prevlet < g:
-                            prevlet+=1 
-                        # WordValues[i] += (LetterValues[str(prevlet)][AllValid[i][prevlet]] / LetterValues["totalvalue"] / -2) + LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
-                    elif g == prevlet:
-                        for k in multlet:
-                            WordValues[i] += -(LetterValues[str(k)][AllValid[i][k]] / LetterValues["totalvalue"] / 2)
-                        WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
-                        break 
-                    else:
-                        WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] /2 
-                        break
-                prevlet = 0
-                multlet = []
-            j = []
+        if AllValid[i] not in Previous:
+            LettersInWord = []
+            for g in range(0,5):
+                for l in Previous:
+                    j.append(l[g]) 
+                if AllValid[i][g] in NotInWord:
+                    WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] / 4
+                    if AllValid[i][g] not in LettersInWord:
+                        LettersInWord.append(AllValid[i][g])
+                elif (AllValid[i][g] in j) and not AllValid[i][g] == correct[g]:
+                    WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] / 4
+                    if AllValid[i][g] not in LettersInWord:
+                        LettersInWord.append(AllValid[i][g])
+                elif AllValid[i][g] == correct[g]:
+                    WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] * 2
+                    if AllValid[i][g] not in LettersInWord:
+                        LettersInWord.append(AllValid[i][g])
+                elif AllValid[i][g] in InWord and correct[g] == "_":
+                    WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] * 1.5
+                    if AllValid[i][g] not in LettersInWord:
+                        LettersInWord.append(AllValid[i][g])
+                elif AllValid[i][g] not in LettersInWord:
+                    LettersInWord.append(AllValid[i][g])
+                    WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
+                else:
+                    # WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] /2
+                    while True:
+                        if AllValid[i][prevlet] == AllValid[i][g] and LetterValues[str(prevlet)][AllValid[i][prevlet]] < LetterValues[str(g)][AllValid[i][g]] and not prevlet == g:
+                            multlet.append(prevlet)
+                            if prevlet < g:
+                                prevlet+=1 
+                            # WordValues[i] += (LetterValues[str(prevlet)][AllValid[i][prevlet]] / LetterValues["totalvalue"] / -2) + LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
+                        elif g == prevlet:
+                            for k in multlet:
+                                WordValues[i] += -(LetterValues[str(k)][AllValid[i][k]] / LetterValues["totalvalue"] / 2)
+                            WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"]
+                            break 
+                        else:
+                            WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / LetterValues["totalvalue"] /2 
+                            break
+                    prevlet = 0
+                    multlet = []
+                j = []
+        else:
+            WordValues[i] = 0
+        if i < LengthofAnswers:
+            WordValues[i] = WordValues[i] * 1.25
         
     # print(WordValues)
     for i in range(0,len(WordValues)):
