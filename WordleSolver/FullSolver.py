@@ -3,15 +3,15 @@ Largest = 0
 LargestNumber = 0
 prevlet = 0
 multlet = []
-Answers = open("WordleSolver\Answers.txt","r")
+Answers = open("WordleSolver/Answers.txt","r")
 ValidAnswers = Answers.read().split()
 Answers.close()
-Guesses = open("WordleSolver\Guesses.txt","r")
+Guesses = open("WordleSolver/Guesses.txt","r")
 ValidGuesses = Guesses.read().split()
 Guesses.close()
 LetterValues : dict[str,int]
-LetterValues = json.loads(open("WordleSolver\LetterPlaceValues.txt","r").read())
-open("WordleSolver\LetterPlaceValues.txt","r").close()
+LetterValues = json.loads(open("WordleSolver/LetterPlaceValues.txt","r").read())
+open("WordleSolver/LetterPlaceValues.txt","r").close()
 # print(LetterValues)
 LengthofAnswers = len(ValidAnswers)
 AllValid = ValidAnswers + ValidGuesses
@@ -90,6 +90,3 @@ while cont:
     LargestNumber = 0
     if input("X to exit") == "X":
         cont = False
-        
-    
-
