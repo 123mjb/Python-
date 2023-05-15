@@ -21,14 +21,20 @@ InWord = []
 correct = []
 Previous = []
 j = []
+ITE = 0
 while cont:
-    correct = list(
-        input("Input Correct letters in format h_l_o. Leave empty if first turn.\n"))
-    print(correct)
-    if not correct:
+    if ITE > 0:
+        correct = list(
+            input("Input Correct letters in format h_l_o. Leave empty if first turn.\n"))
+        # print(correct)
+        if not correct:
+            correct = ["_", "_", "_", "_", "_"]
+        InWord = list(input("Input all other letters in word.\n"))
+        NotInWord = list(input("Input What Letters Are not in the word.\n"))
+    else:
         correct = ["_", "_", "_", "_", "_"]
-    InWord = list(input("Input all other letters in word.\n"))
-    NotInWord = list(input("Input What Letters Are not in the word.\n"))
+        InWord = []
+        NotInWord = []
     WordValues = []
     for i in range(0, len(AllValid)):
         WordValues.append(0)
@@ -100,3 +106,4 @@ while cont:
     LargestNumber = 0
     if input("x to exit").lower() == "x":
         cont = False
+    ITE += 1
