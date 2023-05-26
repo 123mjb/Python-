@@ -1,4 +1,33 @@
 import json
+
+
+def valuer(nonvalidletters):
+    Answers_value = open("WordleSolver\Answers.txt","r")
+    ValidAnswers_value = Answers_value.read().split()
+    Answers_value.close()
+    nonvalid = []
+    for i in range(0,len(ValidAnswers_value)):
+        for l in ValidAnswers_value[i]:
+            if l in nonvalidletters:
+                nonvalid.append(i)
+                break
+    TotalValue_value = len(ValidAnswers_value)
+    lettervalues_value = {0:{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,"k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,"v":0,"w":0,"x":0,"y":0,"z":0},
+                    1:{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,"k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,"v":0,"w":0,"x":0,"y":0,"z":0},
+                    2:{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,"k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,"v":0,"w":0,"x":0,"y":0,"z":0},
+                    3:{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,"k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,"v":0,"w":0,"x":0,"y":0,"z":0},
+                    4:{"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,"g":0,"h":0,"i":0,"j":0,"k":0,"l":0,"m":0,"n":0,"o":0,"p":0,"q":0,"r":0,"s":0,"t":0,"u":0,"v":0,"w":0,"x":0,"y":0,"z":0},
+                    "totalvalue":TotalValue_value}
+    for i in range(0,len(ValidAnswers_value)):
+        if i not in nonvalid:
+            for g in range(0,5):
+                lettervalues_value[g][ValidAnswers_value[i][g]] += 1
+    txtlv = open("WordleSolver\LetterPlaceValuesDuring.txt","w")
+    txtlv.write(str(json.dumps(lettervalues_value)))
+    txtlv.close()
+    
+
+
 LARGEST = 0
 LARGESTNUMBER = 0
 PREVLET = 0
@@ -35,6 +64,10 @@ while CONT:
         correct = ["_", "_", "_", "_", "_"]
         InWord = []
         NotInWord = []
+    if ITE > 1:
+        LetterValues = json.loads(
+            open("WordleSolver/LetterPlaceValuesDuring.txt", "r").read())
+        open("WordleSolver/LetterPlaceValuesDuring.txt", "r").close()
     WordValues = []
     for i in range(0, len(AllValid)):
         WordValues.append(0)
@@ -107,3 +140,4 @@ while CONT:
     if input("x to exit").lower() == "x":
         CONT = False
     ITE += 1
+    valuer(NotInWord)
