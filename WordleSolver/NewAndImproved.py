@@ -22,6 +22,7 @@ correct = []
 Previous = []
 j = []
 ITE = 0
+included = True
 while cont:
     if ITE > 0:
         correct = list(
@@ -44,10 +45,8 @@ while cont:
                 for l in Previous:
                     j.append(l[g])
                 if AllValid[i][g] in NotInWord:
-                    WordValues[i] += (LetterValues[str(g)][AllValid[i][g]] / \
-                        LetterValues["totalvalue"]) / 10
-                    if AllValid[i][g] not in LettersInWord:
-                        LettersInWord.append(AllValid[i][g])
+                    WordValues[i] = 0
+                    break
                 elif (AllValid[i][g] in j) and not AllValid[i][g] == correct[g]:
                     WordValues[i] += LetterValues[str(g)][AllValid[i][g]] / \
                         LetterValues["totalvalue"] / 4
@@ -93,6 +92,12 @@ while cont:
             WordValues[i] = 0
         if i < LengthofAnswers:
             WordValues[i] = WordValues[i] * 1.15
+        for l in InWord:
+            if l not in AllValid[i] and included:
+                included = False
+        if not included:
+            WordValues[i] = 0
+        included = True
     # print(WordValues)
     for i in range(0, len(WordValues)):
         if WordValues[i] > LargestNumber:
