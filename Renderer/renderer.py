@@ -1,5 +1,6 @@
 import math
 import os
+import sys
 # ⬜⬛
 ThreeDObject = [
     [["1","0","0","0","0","0","0","0","0"],
@@ -87,7 +88,7 @@ ThreeDObject = [
 
 Rot = [0,90]
 Loc = [5,5,5] #y,z,x
-Change = 15
+CHANGE = 15
 
 def getimg():
     img = [
@@ -118,7 +119,7 @@ def getimg():
         for j in range(0,len(img[0])):
             rayloc = Loc
             rel = [(j-1)-((len(img[0])-1)/2),(i-1)-((len(img)-1)/2)]
-            relr = [Change*rel[0]/4,Change*rel[1]/4]
+            relr = [CHANGE*rel[0]/4,CHANGE*rel[1]/4]
             rayr = [relr[0]+Rot[0] if relr[0]+Rot[0] <= 360 and relr[0]+Rot[0]>=0 else ((relr[0]+Rot[0]) - 360 if relr[0]+Rot[0] > 360 else 360 + relr[0]+Rot[0]),relr[1]+Rot[1] if relr[1]+Rot[1] <= 360 and relr[1]+Rot[1]>=0 else ((relr[1]+Rot[1]) - 360 if relr[1]+Rot[1] > 360 else 360 + relr[1]+Rot[1])]
             xz = 1*math.cos(math.radians(rayr[1])) #for 1 unit of distance away
             x = math.sin(math.radians(rayr[0]))*xz
@@ -126,7 +127,7 @@ def getimg():
             y = math.sin(math.radians(rayr[1]))
             #print(rayr[0]," ",rayr[1])
             #print(str(y)+" "+str(z)+" "+str(x))
-            for k in range(0,30):
+            for _ in range(0,30):
                 rayloc = [rayloc[0]+(y/2),rayloc[1]+(z/2),rayloc[2]+(x/2)]
                 if (round(rayloc[0]) > 0 and round(rayloc[0]) <= len(ThreeDObject) and round(rayloc[1]) > 0 and round(rayloc[1]) <= len(ThreeDObject[0]) and round(rayloc[2]) > 0 and round(rayloc[2]) <= len(ThreeDObject[0][0])) and ThreeDObject[round(rayloc[0])-1][round(rayloc[1])-1][round(rayloc[2])-1] == "1":
                     img[i][j] = 1
@@ -153,37 +154,25 @@ def main():
         getimg()
         inp = input('w,a,s,d to move camera: ')
         if inp == 'w':
-            if Rot[1] > 360-(Change/4):
-                Rot[1] = Rot[1] - 360 + (Change/4)
+            if Rot[1] > 360-(CHANGE/4):
+                Rot[1] = Rot[1] - 360 + (CHANGE/4)
             else:
-                Rot[1] += (Change/4)
+                Rot[1] += (CHANGE/4)
         if inp == 'a':
-            if Rot[0] <(Change/4):
-                Rot[0]= 360 - ((Change/4) - Rot[0])
+            if Rot[0] <(CHANGE/4):
+                Rot[0]= 360 - ((CHANGE/4) - Rot[0])
             else:
-                Rot[0] -= (Change/4)
+                Rot[0] -= (CHANGE/4)
         if inp == 's':
-            if Rot[1] <(Change/4):
-                Rot[1]= 360 - ((Change/4) - Rot[1])
+            if Rot[1] <(CHANGE/4):
+                Rot[1]= 360 - ((CHANGE/4) - Rot[1])
             else:
-                Rot[1] -= (Change/4)
+                Rot[1] -= (CHANGE/4)
         if inp == 'd':
-            if Rot[0] > 360-(Change/4):
-                Rot[0] = Rot[0] - 360 + (Change/4)
+            if Rot[0] > 360-(CHANGE/4):
+                Rot[0] = Rot[0] - 360 + (CHANGE/4)
             else:
-                Rot[0] += (Change/4)
+                Rot[0] += (CHANGE/4)
         if inp == 'e':
-            exit
-        
+            sys.exit()
 main()
-''' ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
-    ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜'''
