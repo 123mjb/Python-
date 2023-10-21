@@ -1,4 +1,4 @@
-from Runner import main as run
+from runner import main as run
 from SpeedTester import main as test
 
 switcher = {

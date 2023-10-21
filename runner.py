@@ -3,11 +3,7 @@ from os import listdir
 from os.path import isfile, join
 def main():
     '''Interacts with the user to find what file they want to run.'''
-    #print("What / where is your file")
-    #file = input("What File Are You Running?")
-    #onlyfiles = [f for f in listdir(".") if isfile(join(".", f))]
-    #onlyfolders = [f for f in listdir(".") if not isfile(join(".", f))]
-    #print(onlyfiles)
+    
     fsysprnt()
 def fsysprnt():
     '''Prints the structure of the file system that the file is run in.'''
