@@ -1,16 +1,13 @@
 import runner as run
 import SpeedTester as ST
 
-switcher = {
-    "A""a": True,
-    "B""b": False,
-}
+
 while True:
     print("What Are You Doing:\n- A - Running a file\n- B - Testing how long a file takes to run")
     inp = input()
-    if switcher[inp]:
+    if inp in ["a","A"]:
         run.main()
-    elif not switcher[inp]:
+    elif inp in ["b","B"]:
         ST.main()
     else:
         print("Input A or B")
