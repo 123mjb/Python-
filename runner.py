@@ -51,4 +51,3 @@ def further(a : str,b : int):
             layout += ((b*3)*" ") + i + "/\n"
             layout += further(join(a,i+"/"),1 + b)
     return layout
-main()
