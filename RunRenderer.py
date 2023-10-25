@@ -1,3 +1,2 @@
-import Renderer.renderer as r
-re = r.Renderer.main
-re
+from Renderer.renderer import Renderer as r
+r()
