@@ -1,3 +1,3 @@
-import math
-#print(math.sin(105))
-print("⬛")
+import importlib
+n = importlib.__import__("RunRenderer")
+
