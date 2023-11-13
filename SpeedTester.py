@@ -14,7 +14,7 @@ def main():
         path+=inp+"/"
         print(further(path,0))
     start = time.time_ns()
-    n = importlib.__import__(path.replace("/",".") + inp.replace(".py",""))
-    print("It took " + (start- time.time_ns()) + " Nanoseconds")
+    _ = importlib.__import__(path.replace("/",".") + inp.replace(".py",""))
+    print("It took " + str(time.time_ns() - start) + " Nanoseconds")
 main()
     
