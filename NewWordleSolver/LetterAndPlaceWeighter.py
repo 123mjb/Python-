@@ -14,9 +14,10 @@ class Generate:
     def values_create(self):
         with open(self.words,"r",encoding="utf-8") as f:
             self.allwords = f.read().split()
+            print(len(self.allwords))
         for i in self.allwords:
             self.individual_values(i)
-    def individual_values(self,word):
+    def individual_values(self,word : str):
         for i in range(0,len(word)):
             self.values[i+1][self.letters[word[i]]-1] += 1
     def printtofile(self):
