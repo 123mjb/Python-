@@ -1,3 +1,4 @@
+import json
 class Generate:
     def __init__(self,words,valueprint) -> None:
         self.words = words
@@ -22,7 +23,7 @@ class Generate:
             self.values[i+1][self.letters[word[i]]-1] += 1
     def printtofile(self):
         with open(self.valueprint,"w",encoding="utf-8") as f:
-            f.write(str(self.values))
+            f.write(json.dumps(self.values))
     def main(self):
         self.values_create()
         self.printtofile()
