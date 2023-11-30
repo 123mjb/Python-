@@ -1,2 +1,3 @@
-from NewWordleSolver.Solver import Solve as S
-S.main
+from Solver import Solve
+s = Solve()
+s.main()
