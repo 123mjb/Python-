@@ -1,3 +1,4 @@
 from Solver import Solve
 s = Solve()
-s.main()
+while True:
+    s.main()
